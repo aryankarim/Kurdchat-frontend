@@ -1,7 +1,9 @@
 import React from "react";
 import makeToast from "../Toaster";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
+// re-render gives props.history, props.location, props.match
 const LoginPage = (props) => {
     const emailRef = React.createRef();
     const passwordRef = React.createRef();
@@ -16,9 +18,11 @@ const LoginPage = (props) => {
                 password,
             })
             .then((response) => {
+                //making a token for the user on the client side
                 makeToast("success", response.data.message);
                 localStorage.setItem("CC_Token", response.data.token);
                 props.history.push("/dashboard");
+                props.setupSocket();
             })
             .catch((err) => {
                 // console.log(err);
@@ -62,4 +66,4 @@ const LoginPage = (props) => {
     );
 };
 
-export default LoginPage;
+export default withRouter(LoginPage);

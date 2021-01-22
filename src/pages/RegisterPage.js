@@ -13,14 +13,14 @@ const RegisterPage = (props) => {
     const password = passwordRef.current.value;
 
     axios
-      .post("http://localhost:3000/user/register", {
+      .post("http://localhost:8000/user/register", {
         name,
         email,
         password,
       })
       .then((response) => {
         makeToast("success", response.data.message);
-        props.history.push("/login");
+        props.history.push("/dashboard");
       })
       .catch((err) => {
         // console.log(err);
@@ -32,7 +32,11 @@ const RegisterPage = (props) => {
         )
           makeToast("error", err.response.data.message);
       });
-  };
+  }
+
+  const gotologin = () => {
+    props.history.push("/login");
+  }
 
   return (
     <div className="card">
@@ -68,6 +72,9 @@ const RegisterPage = (props) => {
         />
       </div>
       <button onClick={registerUser}>Register</button>
+      <div id="divLogin"> already have an account?
+        <button id="loginOption" onClick={gotologin}>login</button>
+      </div>
     </div>
   );
 };

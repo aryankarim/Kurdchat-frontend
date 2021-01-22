@@ -11,7 +11,7 @@ const IndexPage = (props) => {
         }
         // eslint-disable-next-line
     }, [0]);
-    return <div></div>;
+    return <div>index page</div>;
 };
 
 export default IndexPage;

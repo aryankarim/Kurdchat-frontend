@@ -86,3 +86,24 @@ button {
   padding: 0.25rem 1rem;
   border-radius: 2px;
 }
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+#loginOption{
+  background:transparent;
+  padding: 0;
+  margin: 0;
+  border:0;
+  width: fit-content;
+  font-family: Montserrat;
+  box-sizing: border-box;
+  color: rgb(0, 116, 211);
+  font-size: 16px;
+  text-transform: lowercase;
+}
+#divLogin{
+  padding-top: 5%;
+  text-align: center;
+}
