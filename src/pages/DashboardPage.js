@@ -29,7 +29,6 @@ const DashboardPage = (props) => {
         axios.post("http://localhost:8000/chatroom", { name },
             {
                 headers: {
-
                     authorization: "Bearer " + localStorage.getItem("CC_Token"),
                 }
             }).then((res) => {

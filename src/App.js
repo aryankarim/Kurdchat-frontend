@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import IndexPage from "./pages/IndexPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
-import IndexPage from "./pages/IndexPage";
-import ChatroomPage from "./pages/ChatroomPage"
+import ChatroomPage from "./pages/ChatroomPage";
+import ProtectedRoute from "./pages/protectedroute";
 import io from "socket.io-client";
 import makeToast from "./Toaster";
-
 
 function App() {
 
@@ -15,7 +14,6 @@ function App() {
 
   const setupSocket = () => {
     const token = localStorage.getItem("CC_Token");
-    console.log("before creating new sovket");
     if (token && !socket) {
       const newSocket = io("http://localhost:8000", {
         query: {
@@ -23,19 +21,14 @@ function App() {
         },
       });
 
-      console.log("before diconnect");
       newSocket.on("disconnect", () => {
-        console.log("in disconnect");
-
         setSocket(null);
         setTimeout(setupSocket, 3000);
         makeToast("error", "Socket Disconnected!");
       });
 
-      console.log("betweenn");
 
       newSocket.on("connect", () => {
-        console.log("in connect");
         makeToast("success", "Socket Connected!");
       });
 
@@ -51,22 +44,28 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={IndexPage} exact />
         <Route
-          path="/login"
-          render={() => <LoginPage setupSocket={setupSocket} />}
+          path="/"
+          render={() => <IndexPage setupSocket={setupSocket} />}
           exact
         />
+
         <Route path="/register" component={RegisterPage} exact />
-        <Route
+        <ProtectedRoute
           path="/dashboard"
-          render={() => <DashboardPage socket={socket} />}
+          component={DashboardPage}
           exact
         />
-        <Route
+        <ProtectedRoute
           path="/chatroom/:id"
-          render={() => <ChatroomPage socket={socket} />}
+          component={ChatroomPage}
+          socket={socket}
           exact
+        />
+
+        <Route
+          path="*"
+          render={() => "NOT FOUND 404"}
         />
       </Switch>
     </BrowserRouter>

@@ -35,7 +35,7 @@ const RegisterPage = (props) => {
   }
 
   const gotologin = () => {
-    props.history.push("/login");
+    props.history.push("/index");
   }
 
   return (
@@ -52,28 +52,32 @@ const RegisterPage = (props) => {
             ref={nameRef}
           />
         </div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="abc@example.com"
-          ref={emailRef}
-        />
+        <div className="inputGroup">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="abc@example.com"
+            ref={emailRef}
+          />
+        </div>
+        <div className="inputGroup">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Your Password"
+            ref={passwordRef}
+          />
+        </div>
       </div>
-      <div className="inputGroup">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Your Password"
-          ref={passwordRef}
-        />
-      </div>
+
       <button onClick={registerUser}>Register</button>
-      <div id="divLogin"> already have an account?
-        <button id="loginOption" onClick={gotologin}>login</button>
+      <div id="divLogin">
+        Already have an account?
+        <button id="loginOption" onClick={gotologin}> Login</button>
       </div>
     </div>
   );

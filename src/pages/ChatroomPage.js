@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 
 const ChatroomPage = ({ match, socket }) => {
     const chatroomId = match.params.id;
     const [messages, setMessages] = useState([]);
     const messageRef = React.useRef();
     const [userId, setUserId] = useState("");
+
 
     const sendMessage = () => {
         if (socket) {
@@ -15,6 +15,9 @@ const ChatroomPage = ({ match, socket }) => {
             });
 
             messageRef.current.value = "";
+        } else {
+            console.log(socket);
+            console.log(match);
         }
     };
 
@@ -64,7 +67,7 @@ const ChatroomPage = ({ match, socket }) => {
                                 }
                             >
                                 {message.name}:
-              </span>{" "}
+                            </span>{" "}
                             {message.message}
                         </div>
                     ))}
@@ -74,14 +77,14 @@ const ChatroomPage = ({ match, socket }) => {
                         <input
                             type="text"
                             name="message"
-                            placeholder="Say something!"
+                            placeholder="say something!"
                             ref={messageRef}
                         />
                     </div>
                     <div>
                         <button className="join" onClick={sendMessage}>
                             Send
-            </button>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -89,4 +92,4 @@ const ChatroomPage = ({ match, socket }) => {
     );
 };
 
-export default withRouter(ChatroomPage);
+export default ChatroomPage;

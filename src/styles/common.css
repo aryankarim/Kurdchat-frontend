@@ -1,43 +1,47 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap"); */
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akronim&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 * {
-  font-family: Montserrat;
+  font-family: 'Nunito';
   box-sizing: border-box;
-  color: #333;
+  color: #eee;
 }
 
 body {
   font-size: 16px;
+  background: #2f3e46;
+  text-align: center;
 }
 
 .card {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: #354f52;
+  box-shadow: 0 3px 6px rgba(15, 15, 15, 0.527), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 4px;
   padding: 1rem;
   position: relative;
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 25vw;
+  width: 30vw;
   transform: translate(-50%, -50%);
+  align-content: center;
 }
 
 .cardHeader {
-  background: #f7c52a;
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   text-transform: uppercase;
-  transform: skewY(-4deg);
+  /* transform: skewY(-4deg); */
   font-size: 1.1rem;
   font-weight: bold;
-  display: inline-block;
-  position: absolute;
-  top: -1rem;
-  left: -0.75rem;
+
+  margin: auto;
 }
 
 .cardBody {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .inputGroup {
@@ -62,12 +66,12 @@ input:focus {
 }
 
 button {
-  background: #f7c52a;
+  background: #84a98c;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   width: 100%;
-  text-transform: uppercase;
+
 }
 
 .chatrooms {
@@ -89,7 +93,7 @@ button {
 
 a {
   text-decoration: none;
-  color: #333;
+  /* color: #333; */
 }
 #loginOption{
   background:transparent;
@@ -99,11 +103,22 @@ a {
   width: fit-content;
   font-family: Montserrat;
   box-sizing: border-box;
-  color: rgb(0, 116, 211);
+  color: #84a98c;
   font-size: 16px;
   text-transform: lowercase;
 }
 #divLogin{
   padding-top: 5%;
   text-align: center;
+}
+#wellcomeMsg{
+  font-family: 'Akronim', cursive;
+  font-size: 90px;
+}
+.index{
+  background-color: #354f52;
+  border-radius: 0.5em;
+}
+.index a{
+  font-family: 'Indie Flower', cursive;
 }
