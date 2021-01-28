@@ -10,7 +10,7 @@ const DashboardPage = (props) => {
 
         axios.get("http://localhost:8000/chatroom", {
             headers: {
-                authorization: "Bearer " + localStorage.getItem("CC_Token"),
+                authorization: "Bearer " + localStorage.getItem("KC_token"),
             },
         })
             .then((response) => {
@@ -23,13 +23,13 @@ const DashboardPage = (props) => {
 
 
     const createChatroom = () => {
-        console.log(localStorage.getItem("CC_Token"));
+        console.log(localStorage.getItem("KC_token"));
 
         const name = chatroomNameRef.current.value;
         axios.post("http://localhost:8000/chatroom", { name },
             {
                 headers: {
-                    authorization: "Bearer " + localStorage.getItem("CC_Token"),
+                    authorization: "Bearer " + localStorage.getItem("KC_token"),
                 }
             }).then((res) => {
                 getChatrooms();

@@ -13,11 +13,11 @@ function App() {
   const [socket, setSocket] = React.useState(null);
 
   const setupSocket = () => {
-    const token = localStorage.getItem("CC_Token");
+    const token = localStorage.getItem("KC_token");
     if (token && !socket) {
       const newSocket = io("http://localhost:8000", {
         query: {
-          token: localStorage.getItem("CC_Token"),
+          token: localStorage.getItem("KC_token"),
         },
       });
 

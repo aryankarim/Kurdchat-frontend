@@ -22,7 +22,7 @@ const ChatroomPage = ({ match, socket }) => {
     };
 
     React.useEffect(() => {
-        const token = localStorage.getItem("CC_Token");
+        const token = localStorage.getItem("KC_token");
         if (token) {
             const payload = JSON.parse(atob(token.split(".")[1]));
             setUserId(payload.id);
