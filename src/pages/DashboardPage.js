@@ -7,7 +7,7 @@ const DashboardPage = (props) => {
     const chatroomNameRef = createRef();
     const [chatrooms, setChatrooms] = React.useState([]);
     const getChatrooms = () => {
-
+        console.log("inside getchatrooms");
         axios.get("http://localhost:8000/chatroom", {
             headers: {
                 authorization: "Bearer " + localStorage.getItem("KC_token"),
@@ -15,6 +15,7 @@ const DashboardPage = (props) => {
         })
             .then((response) => {
                 setChatrooms(response.data);
+                console.log("is this happening");
             })
             .catch((err) => {
                 setTimeout(getChatrooms, 3000);
@@ -23,7 +24,6 @@ const DashboardPage = (props) => {
 
 
     const createChatroom = () => {
-        console.log(localStorage.getItem("KC_token"));
 
         const name = chatroomNameRef.current.value;
         axios.post("http://localhost:8000/chatroom", { name },
@@ -32,7 +32,8 @@ const DashboardPage = (props) => {
                     authorization: "Bearer " + localStorage.getItem("KC_token"),
                 }
             }).then((res) => {
-                getChatrooms();
+
+                setChatrooms(prevChatrooms => ([...prevChatrooms, res.data.theRoom]));
                 makeToast("success", res.data.message);
             }).catch((err) => {
                 if (
@@ -44,12 +45,19 @@ const DashboardPage = (props) => {
                     makeToast("error", err.response.data.message);//response is different from res in above
             })
     }
-
+    console.log("inside Dashboard component");
+    console.log(chatrooms);
 
     React.useEffect(() => {
+        console.log("inside Dashboard Use effect");
         getChatrooms();
         // eslint-disable-next-line
     }, []);
+
+    //1 how to debug only one file //done
+    //fix updating rooms on dashboard //why when state changes rerender does not happen //done
+    //fix online users//done
+    //COMPNENT LIFE CYCLE//done
 
     return (
         <div className="card">
@@ -74,6 +82,7 @@ const DashboardPage = (props) => {
                         <Link to={"/chatroom/" + chatroom._id}>
                             <div className="join">Join</div>
                         </Link>
+                        <div className="onlineUsers"> {chatroom.roomUsers} online</div>
                     </div>
                 ))}
             </div>

@@ -36,6 +36,14 @@ const ChatroomPage = ({ match, socket }) => {
         //eslint-disable-next-line
     }, [messages]);
 
+    const leaveRoom = () => {
+        if (socket) {
+            socket.emit("leaveRoom", {
+                chatroomId,
+            });
+        }
+    }
+
     React.useEffect(() => {
         if (socket) {
             socket.emit("joinRoom", {
@@ -45,11 +53,7 @@ const ChatroomPage = ({ match, socket }) => {
 
         return () => {
             //Component Unmount
-            if (socket) {
-                socket.emit("leaveRoom", {
-                    chatroomId,
-                });
-            }
+            leaveRoom();
         };
         //eslint-disable-next-line
     }, []);
@@ -61,11 +65,7 @@ const ChatroomPage = ({ match, socket }) => {
                 <div className="chatroomContent">
                     {messages.map((message, i) => (
                         <div key={i} className="message">
-                            <span
-                                className={
-                                    userId === message.userId ? "ownMessage" : "otherMessage"
-                                }
-                            >
+                            <span className={userId === message.userId ? "ownMessage" : "otherMessage"}>
                                 {message.name}:
                             </span>{" "}
                             {message.message}

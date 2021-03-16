@@ -58,3 +58,7 @@
   input{
     color:#181818;
   }
+
+ div .onlineUsers{/* to be fixed */
+    display: inline-block;
+  }

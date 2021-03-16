@@ -9,7 +9,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
             {...rest}
             render={props => {
                 if (auth.isauthenticated()) {
-                    return (<Component socket={rest.socket} {...props} />);
+                    return (<Component socket={rest.socket} {...props} />);//cuz routes cannot pass down costum props
                 } else {
                     return (<Redirect
                         to={{

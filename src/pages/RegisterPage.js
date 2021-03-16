@@ -35,7 +35,7 @@ const RegisterPage = (props) => {
   }
 
   const gotologin = () => {
-    props.history.push("/index");
+    props.history.push("/");
   }
 
   return (

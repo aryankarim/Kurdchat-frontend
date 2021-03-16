@@ -5,6 +5,7 @@ import auth from "../auth";
 
 // re-render gives props.history, props.location, props.match
 const IndexPage = (props) => {
+    console.log("inside index component");
     const emailRef = React.createRef();
     const passwordRef = React.createRef();
 
